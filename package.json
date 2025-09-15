@@ -44,7 +44,7 @@
     "@types/express": "5.0.3",
     "@types/jest": "30.0.0",
     "@types/node": "^22",
-    "axios": "1.11.0",
+    "axios": "1.12.2",
     "eslint": "9.33.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.4",
