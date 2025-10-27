@@ -15,8 +15,8 @@ jobs:
   check_title:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: PR Title Verify
-        uses: satvik-s/pr-title-check@1.1.0
+        uses: satvik-s/pr-title-check@1.3.2
         with:
           pattern: '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}(\([\w\-\.]+\))?(!)?: ([\w ])+([\s\S]*)'
