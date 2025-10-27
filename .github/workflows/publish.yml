@@ -1,0 +1,59 @@
+name: Publish to NPM
+
+on:
+  workflow_dispatch:
+
+env:
+  FORCE_COLOR: 1
+
+jobs:
+  publish:
+    name: Publish Package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Configure git
+        run: |
+          git config --local user.email "dpreleasebot@hbo.com"
+          git config --local user.name "hbo-github-bot"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Unit tests with coverage
+        run: npm run coverage
+
+      - name: Integration tests
+        run: make integration-test
+
+      - name: Install express-app demo dependencies
+        run: npm install
+        working-directory: examples/express-app
+
+      - name: Build express-app demo
+        run: npm run build
+        working-directory: examples/express-app
+
+      - name: Publish to NPM
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,67 @@
+name: CI Build
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  FORCE_COLOR: 1
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+
+      - name: Configure git
+        run: |
+          git config --local user.email "dpreleasebot@hbo.com"
+          git config --local user.name "hbo-github-bot"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Unit tests with coverage
+        run: npm run coverage
+
+      - name: Integration tests
+        run: make integration-test
+
+      - name: Install express-app demo dependencies
+        run: npm install
+        working-directory: examples/express-app
+
+      - name: Build express-app demo
+        run: npm run build
+        working-directory: examples/express-app
+
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: 'reports/*.xml'
+          check_name: 'Test Results'
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v5
+        if: always()
+        with:
+          files: ./coverage/cobertura-coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
