@@ -1,6 +1,6 @@
 <div>
   <br />
-    <img width="300" src="https://github.com/HBOCodeLabs/wiremock-captain/blob/main/docs/images/wmc-logo.svg?raw=true">
+    <img width="300" src="https://github.com/wbd-open-source/wiremock-captain/blob/main/docs/images/wmc-logo.svg?raw=true">
   <p />
 </div>
 
@@ -10,8 +10,8 @@
 [![Azure DevOps builds](https://img.shields.io/azure-devops/build/HBODigitalProducts/e6cee603-ddc7-43e3-b1a8-e2d6b3f6173c/37)](https://dev.azure.com/HBODigitalProducts/OSS/_build?definitionId=37&branchFilter=1388%2C1388%2C1388%2C1388%2C1388%2C1388%2C1388%2C1388)
 [![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/HBODigitalProducts/OSS/37)](https://dev.azure.com/HBODigitalProducts/OSS/_build?definitionId=37&branchFilter=1388%2C1388%2C1388%2C1388%2C1388%2C1388%2C1388%2C1388)
 [![node-current](https://img.shields.io/node/v/wiremock-captain)](https://www.npmjs.com/package/wiremock-captain)
-[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/HBOCodeLabs/wiremock-captain?color=green)](https://github.com/HBOCodeLabs/wiremock-captain/pulls?q=is%3Apr+is%3Aclosed)
-[![GitHub](https://img.shields.io/github/license/HBOCodeLabs/wiremock-captain)](https://github.com/HBOCodeLabs/wiremock-captain/blob/main/LICENSE)
+[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/wbd-open-source/wiremock-captain?color=green)](https://github.com/wbd-open-source/wiremock-captain/pulls?q=is%3Apr+is%3Aclosed)
+[![GitHub](https://img.shields.io/github/license/wbd-open-source/wiremock-captain)](https://github.com/wbd-open-source/wiremock-captain/blob/main/LICENSE)
 
 *A better way to use the WireMock API simulator to test your APIs*
 
@@ -39,7 +39,7 @@ A typical flow goes like this:
 
 <div>
   <br />
-    <img width="700" src="https://github.com/HBOCodeLabs/wiremock-captain/blob/main/docs/images/wmc-block-diagram.svg?raw=true">
+    <img width="700" src="https://github.com/wbd-open-source/wiremock-captain/blob/main/docs/images/wmc-block-diagram.svg?raw=true">
   <p />
 </div>
 
@@ -60,7 +60,7 @@ Here's how to set up WireMock Captain.  The demo project can be copy+pasted as a
 2. Clone the WireMock Captain repo:
 
    ```shell
-   git clone https://github.com/HBOCodeLabs/wiremock-captain.git
+   git clone https://github.com/wbd-open-source/wiremock-captain.git
    ```
 
 3. Build the WireMock project:
@@ -137,7 +137,7 @@ describe('Integration with WireMock', () => {
 
 ## Examples
 
-For more examples, look [here](https://github.com/HBOCodeLabs/wiremock-captain/tree/main/docs/examples)
+For more examples, look [here](https://github.com/wbd-open-source/wiremock-captain/tree/main/docs/examples)
 
 ## Debugging
 

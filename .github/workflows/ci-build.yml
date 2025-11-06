@@ -50,18 +50,18 @@ jobs:
         run: npm run build
         working-directory: examples/express-app
 
-      - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v2
+      - name: Upload test results
+        uses: actions/upload-artifact@v5
         if: always()
         with:
-          files: 'reports/*.xml'
-          check_name: 'Test Results'
+          name: test-results
+          path: reports/*.xml
+          retention-days: 30
 
       - name: Upload coverage reports
-        uses: codecov/codecov-action@v5
+        uses: actions/upload-artifact@v5
         if: always()
         with:
-          files: ./coverage/cobertura-coverage.xml
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: false
+          name: coverage-reports
+          path: ./coverage/cobertura-coverage.xml
+          retention-days: 30
