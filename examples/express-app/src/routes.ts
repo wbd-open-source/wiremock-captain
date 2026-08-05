@@ -27,8 +27,9 @@ export async function postProcessDataRoute(
     });
     const json = resp.data;
     return response.send(json);
-  } catch (e) {
-    const { name, message } = e;
+  } catch (error: unknown) {
+    const name = axios.isAxiosError(error) ? error.name : 'Error';
+    const message = error instanceof Error ? error.message : String(error);
     console.log(`ERROR! name=${name} message=${message}`);
     return response.sendStatus(500);
   }

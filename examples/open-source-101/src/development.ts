@@ -9,8 +9,15 @@ import { getSpotifyAccessToken } from './utils';
 const PORT = 8080;
 
 const httpLogger = pinoHttp({
-    prettyPrint: { translateTime: true, singleLine: true, colorize: true },
-    customReceivedMessage: (_req, _res) => 'request received',
+    transport: {
+        target: 'pino-pretty',
+        options: {
+            translateTime: true,
+            singleLine: true,
+            colorize: true,
+        },
+    },
+    customReceivedMessage: () => 'request received',
 });
 
 const app = express();

@@ -2,7 +2,7 @@
 // See the LICENSE file for license information.
 
 import axios from 'axios';
-import * as express from 'express';
+import express from 'express';
 import { Server } from 'http';
 
 import {
@@ -43,7 +43,7 @@ describe('Integration with WireMock', () => {
         app.use(express.json());
         app.get('/webhook', webhookGetHandler);
         app.post('/webhook', webhookPostHandler);
-        server = app.listen(WEBHOOK_PORT).on('error', (e) => {
+        server = app.listen(WEBHOOK_PORT).on('error', (e: Error) => {
             throw new Error('Error starting webhook callback server: ' + e.message);
         });
     });

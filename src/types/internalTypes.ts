@@ -72,17 +72,7 @@ export interface IWebhook {
 export type KeyValue = boolean | number | string;
 
 export type Method =
-    | 'ANY'
-    | 'CONNECT'
-    | 'DELETE'
-    | 'GET'
-    | 'HEAD'
-    | 'OPTIONS'
-    | 'PATCH'
-    | 'POST'
-    | 'PUT'
-    | 'TRACE';
+    'ANY' | 'CONNECT' | 'DELETE' | 'GET' | 'HEAD' | 'OPTIONS' | 'PATCH' | 'POST' | 'PUT' | 'TRACE';
 
 export type WebhookBody =
-    | { type: 'JSON'; data: Record<string, unknown> }
-    | { type: 'String'; data: string };
+    { type: 'JSON'; data: Record<string, unknown> } | { type: 'String'; data: string };

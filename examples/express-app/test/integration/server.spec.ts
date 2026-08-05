@@ -1,8 +1,8 @@
-import * as supertest from 'supertest';
+import supertest from 'supertest';
 import { WireMock } from 'wiremock-captain';
 
 describe('postProcessData', () => {
-  const serviceUrl = process.env.TEST_ENDPOINT || 'localhost:3000';
+  const serviceUrl = process.env.TEST_ENDPOINT || 'http://localhost:3000';
   const mockInstance = new WireMock('http://localhost:8080');
 
   beforeAll(async () => {

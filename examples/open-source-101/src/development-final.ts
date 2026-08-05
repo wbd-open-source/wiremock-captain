@@ -2,7 +2,7 @@ import axios from 'axios';
 import express from 'express';
 import { pinoHttp } from 'pino-http';
 import { WireMock } from 'wiremock-captain';
-import spotifyGetArtistResponse from './spotify-get-artist-200-resp.json';
+import spotifyGetArtistResponse from './spotify-get-artist-200-resp.json' with { type: 'json' };
 import { getSpotifyAccessToken } from './utils';
 
 // SPOTIFY GET artist API doc
@@ -12,8 +12,15 @@ const ENV: string = process.env.NODE_ENV!;
 const PORT = 8080;
 
 const httpLogger = pinoHttp({
-    prettyPrint: { translateTime: true, singleLine: true, colorize: true },
-    customReceivedMessage: (_req, _res) => 'request received',
+    transport: {
+        target: 'pino-pretty',
+        options: {
+            translateTime: true,
+            singleLine: true,
+            colorize: true,
+        },
+    },
+    customReceivedMessage: () => 'request received',
 });
 
 if (ENV === 'development') {
@@ -58,8 +65,10 @@ app.get('/artist-popularity', async (req: express.Request, res: express.Response
         };
 
         res.status(200).json(artistInfo);
-    } catch (e: any) {
-        const externalApiErrorStatus = e.response?.status;
+    } catch (error: unknown) {
+        const externalApiErrorStatus = axios.isAxiosError(error)
+            ? error.response?.status
+            : undefined;
 
         if (externalApiErrorStatus) {
             // Spotify responded with non-200 status code
@@ -70,7 +79,7 @@ app.get('/artist-popularity', async (req: express.Request, res: express.Response
         } else {
             // Error occured outside of talking with Spotify's API
             // Respond back with a generic 500 status code
-            res.sendStatus(500).json('Internal Server Error');
+            res.status(500).json('Internal Server Error');
         }
     }
 });

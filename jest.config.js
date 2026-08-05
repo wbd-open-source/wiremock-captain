@@ -11,7 +11,9 @@ module.exports = {
             statements: 100,
         },
     },
-    preset: 'ts-jest',
+    transform: {
+        '^.+\\.tsx?$': ['ts-jest', { tsconfig: 'tsconfig.test.json' }],
+    },
     reporters: ['default', ['jest-junit', { outputDirectory: 'reports' }]],
     testEnvironment: 'node',
     testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/examples/'],
