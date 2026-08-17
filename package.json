@@ -45,7 +45,7 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.6",
     "express": "5.2.1",
-    "globals": "17.9.0",
+    "globals": "17.11.0",
     "jest": "30.4.2",
     "jest-junit": "17.0.0",
     "npm-check-updates": "23.0.1",
