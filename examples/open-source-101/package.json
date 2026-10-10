@@ -20,7 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.19.0",
+    "axios": "^1.20.0",
     "express": "^5.2.1",
     "pino-http": "^11.0.0",
     "pino-pretty": "^13.1.3",
